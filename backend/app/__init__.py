@@ -22,7 +22,13 @@ def create_app(config_name=None):
     # Init extensions
     db.init_app(app)
     redis_client.init_app(app)
-    CORS(app, origins=["http://localhost:3000", "http://frontend:3000"])
+
+    # CORS — allow localhost for dev, plus any FRONTEND_URL set in env
+    allowed_origins = ["http://localhost:3000", "http://frontend:3000"]
+    frontend_url = os.getenv("FRONTEND_URL")
+    if frontend_url:
+        allowed_origins.append(frontend_url)
+    CORS(app, origins=allowed_origins)
 
     # Register blueprints
     from app.routes.experiments import experiments_bp
