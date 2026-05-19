@@ -1,5 +1,7 @@
 # ML Experiment Tracker
 
+**Live demo:** https://ml-experiment-tracker-1.onrender.com
+
 ![Dashboard](docs/screenshots/dashboard.png)
 
 I built this after getting curious about how ML teams at large companies track hundreds of training runs at once. The problem is straightforward but the engineering behind it is interesting — you need fast reads because dashboards poll frequently, durable writes because you can't lose training data, and a clean way to log metrics from whatever training script someone is running. This is my take on solving that.
@@ -38,7 +40,7 @@ The read pattern is what made Redis worth adding. The dashboard polls every 5 se
 You just need Docker installed.
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/ml-experiment-tracker
+git clone https://github.com/harkiran11/ml-experiment-tracker
 cd ml-experiment-tracker
 docker compose up --build
 ```
