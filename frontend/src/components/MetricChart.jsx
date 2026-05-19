@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid,
-  Tooltip, ResponsiveContainer, Legend,
+  Tooltip, ResponsiveContainer,
 } from 'recharts'
 
 const COLORS = ['#6c63ff', '#22d3a0', '#f5c542', '#4fa3ff', '#f05a5a', '#e879f9']
@@ -29,7 +29,14 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 export default function MetricChart({ metrics = {}, title }) {
   const metricNames = Object.keys(metrics)
-  const [activeMetrics, setActiveMetrics] = useState(metricNames.slice(0, 3))
+  const [activeMetrics, setActiveMetrics] = useState([])
+
+  // When metrics load (or change), default to first 3 selected
+  useEffect(() => {
+    if (metricNames.length > 0 && activeMetrics.length === 0) {
+      setActiveMetrics(metricNames.slice(0, 3))
+    }
+  }, [metricNames.join(',')])
 
   if (!metricNames.length) {
     return (
