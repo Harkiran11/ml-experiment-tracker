@@ -4,6 +4,10 @@
 
 ![Dashboard](docs/screenshots/dashboard.png)
 
+![Experiment Detail](docs/screenshots/experiment-detail.png)
+
+![Compare](docs/screenshots/compare.png)
+
 I built this after getting curious about how ML teams at large companies track hundreds of training runs at once. The problem is straightforward but the engineering behind it is interesting — you need fast reads because dashboards poll frequently, durable writes because you can't lose training data, and a clean way to log metrics from whatever training script someone is running. This is my take on solving that.
 
 ## What it does
